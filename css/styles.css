@@ -206,24 +206,11 @@ nav h1 a {
 }
 
 /* ====================== Restaurant Details ====================== */
-.inside {
-  font-size: 35px;
-}
 .inside header {
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 10000;
-}
-.inside nav {
-  min-height: 120px;
-}
-.inside nav h1{
-  margin: 60px;
-}
-.inside nav h1 a{
-  letter-spacing: 27px;
-  font-size: 1.4em;
 }
 .inside #breadcrumb li {
   font-size: 1.6em;
@@ -232,8 +219,6 @@ nav h1 a {
   background: blue none repeat scroll 0 0;
   height: 60vh;
   width: 100%;
-
-  font-size: 2em;
 }
 .inside #map {
   background-color: #ccc;

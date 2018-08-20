@@ -1,3 +1,5 @@
+var staticCacheName = 'restaurant-reviews-v2'
+
 self.addEventListener('install', function(event) {
 	event.waitUntil(
 		caches.open('restaurant-reviews').then(function(cache) {
@@ -22,15 +24,25 @@ self.addEventListener('install', function(event) {
 	);
 });
 
+self.addEventListener('active', function(event) {
+	event.waitUntil(
+		caches.keys().then(function(cacheNames) {
+			return Promise.all(
+				cacheNames.filter(function(cacheName) {
+					return cacheName.startsWith('restaurant-reviews-') && cacheName != staticCacheName;
+				}).map(function(cacheName) {
+					return cache.delete(cacheName);
+				})
+			);
+		})
+	);
+});
+
 self.addEventListener('fetch', function(event) {
 	event.respondWith(
-		fetch(event.request).then(function(response) {
-			if (response.status === 404) {
-				return new Response("404 err");
-			}
-			return response;
-		}).catch(function() {
-			return new Response("ERROR");
+		caches.match(event.request).then(function(response) {
+			if (response) return response;
+			return fetch(event.request);
 		})
 	)
 });
