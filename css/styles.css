@@ -58,6 +58,19 @@ nav a, button {
   text-align: center;
   text-transform: uppercase;
   }
+
+.skip-link {
+  position: absolute;
+  top: -40;
+  left: 0;
+  background: grey;
+  color: white;
+  padding: 8px;
+  z-index: 1000000;
+}
+.skip-link:focus {
+  top: 0;
+}
 /* ====================== Navigation ====================== */
 nav {
   width: 100%;
